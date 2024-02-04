@@ -1,10 +1,11 @@
+export const dynamic = 'force-dynamic'
 import clientPromise from "@/lib/mongodb";
 import dayjs from "dayjs";
 import { NextResponse } from "next/server";
 
 export const GET = async (req, res) => {
   try {
-    const searchParams = req.nextUrl.searchParams;
+    const {searchParams} = new URL(req.url);
     const origin = searchParams.get("origin");
     const destination = searchParams.get("destination");
     const time = searchParams.get("time");

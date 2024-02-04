@@ -1,9 +1,10 @@
+export const dynamic = 'force-dynamic'
 import clientPromise from "@/lib/mongodb";
 import { NextResponse } from "next/server";
 
 export const GET = async (req, res) => {
   try {
-    const searchParams = req.nextUrl.searchParams;
+    const {searchParams} = new URL(req.url);
     const searchName = searchParams.get("name");
     const regex = { $regex: `.*${searchName}.*`, $options: "i" };
     const search = searchName
